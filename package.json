@@ -1,0 +1,44 @@
+{
+  "name": "template",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "lint": "node_modules/eslint/bin/eslint.js ./src",
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "test": "jest"
+  },
+  "dependencies": {
+    "axios": "^0.16.1",
+    "redux-actions": "^2.0.3",
+    "redux-thunk": "^2.2.0",
+    "tcomb-form-native": "^0.6.8",
+    "react": "15.4.2",
+    "react-native": "0.42.3",
+    "react-native-maps": "^0.13.1",
+    "react-native-router-flux": "^3.38.0",
+    "react-navigation": "^1.0.0-beta.7",
+    "react-redux": "^5.0.3",
+    "redux": "^3.6.0",
+    "redux-form": "^6.5.0",
+    "redux-saga": "^0.14.3"
+  },
+  "devDependencies": {
+    "babel-eslint": "^7.2.1",
+    "babel-jest": "19.0.0",
+    "babel-preset-react-native": "1.9.1",
+    "eslint": "^3.18.0",
+    "eslint-config-airbnb": "^14.1.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^4.0.0",
+    "eslint-plugin-react": "^6.10.2",
+    "jest": "19.0.2",
+    "react-test-renderer": "15.4.2"
+  },
+  "jest": {
+    "preset": "react-native"
+  },
+  "description": "An opiniated template for react native apps",
+  "main": "index.js",
+  "author": "daose",
+  "license": "MIT"
+}
