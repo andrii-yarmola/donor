@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Button, ActivityIndicator } from 'react-native';
+import { StyleSheet, Text, View, Button, ActivityIndicator, TouchableOpacity } from 'react-native';
 const t = require('tcomb-form-native');
 
 const Form = t.form.Form;
 
 // form model
 const structure = t.struct({
-  emailOrPhone: t.String,
+  identifier: t.String,
   password: t.String,
 });
 
@@ -14,7 +14,7 @@ const structure = t.struct({
 const options = {
   auto: 'placeholders',
   fields: {
-    emailOrPhone: {
+    identifier: {
       placeholder: 'email/phone',
       keyboardType: 'email-address',
       error: 'Insert a valid email or phone'
@@ -42,6 +42,7 @@ export default class SignIn extends Component {
   
   onSubmit(e){
     var value = this.refs.form.getValue();
+    console.log(this.props);
     if (value) {
       // validation
       console.log(value);
@@ -59,10 +60,17 @@ export default class SignIn extends Component {
           type={structure}
           options={options}
         />
-        <Button
+        <TouchableOpacity
           onPress={this.onSubmit}
-          title="Sign In"
-        />
+          style={styles.button}
+        >
+          <Text style={styles.buttonText}> Sign In </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {}}
+        >
+          <Text> Recover lost account </Text>
+        </TouchableOpacity>
         { this.state.isLoading && 
           <ActivityIndicator
             animating={this.state.isLoading}
@@ -79,5 +87,14 @@ const styles = StyleSheet.create({
   container: {
     paddingVertical: 30,
   },
+   button: {
+    borderRadius: 20,
+    backgroundColor: 'green',
+    padding: 10
+  },
+  buttonText: {
+    color: 'white',
+    textAlign: 'center',
+  }
 });
 

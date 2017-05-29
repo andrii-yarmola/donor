@@ -5,12 +5,13 @@ import SignIn from './SignIn';
 export default class Welcome extends Component {
   static navigationOptions = {
     title: 'Welcome',
+    header: null
   };
   render() {
     const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
-        
+        <Image source={require('../../images/222.jpg')} style={styles.backgroundImage}/>
         <Text>Welcome to the Donor app!</Text>
         <TouchableOpacity
           onPress={() => navigate('RegistrationWrap', { registrationStep: 1 })}
@@ -24,7 +25,6 @@ export default class Welcome extends Component {
   }
 }
 
-// <Image source={require('../../images/222.jpg')} style={styles.backgroundImage}/>
 
 const styles = StyleSheet.create({
   container: {
@@ -40,16 +40,16 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     width: null,
-    height: 100,
-    //resizeMode: 'stretch', // or 'stretch'
+    height: 220,
+    //resizeMode: 'stretch', 
   },
   button: {
     borderRadius: 20,
-    backgroundColor: 'red',
+    backgroundColor: 'white',
     padding: 10
   },
   buttonText: {
-    color: 'purple',
+    color: 'green',
   }
 });
 

@@ -1,4 +1,4 @@
 import { AppRegistry } from 'react-native';
 import App from './src';
 
-AppRegistry.registerComponent('template', () => App);
+AppRegistry.registerComponent('Donor', () => App);

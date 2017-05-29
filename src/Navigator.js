@@ -6,8 +6,12 @@ import Welcome from './components/Welcome/Welcome';
 import TermsAndConditions from './components/TermsAndConditions';
 import RegistrationWrap from './components/Registration/RegistrationWrap';
 
+//global form styling for t-comb-forms
+import { forms } from './styles';
+
 // global variable for request debugging
-GLOBAL.XMLHttpRequest = GLOBAL.originalXMLHttpRequest || GLOBAL.XMLHttpRequest
+GLOBAL.XMLHttpRequest = GLOBAL.originalXMLHttpRequest || GLOBAL.XMLHttpRequest;
+
 
 const AppNavigator = StackNavigator({
   Welcome: { screen: Welcome },

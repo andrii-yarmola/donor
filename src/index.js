@@ -6,6 +6,7 @@ import appReducer from './reducers';
 import Navigator from './Navigator';
 import sagas from './sagas';
 
+
 const sagaMiddleware = createSagaMiddleware();
 
 const store = createStore(appReducer, applyMiddleware(sagaMiddleware));
