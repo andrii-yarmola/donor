@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity , Image } from 'react-native';
 import SignIn from './SignIn';
+import { connect } from 'react-redux';
+import * as actionCreators from './../../actions/actionCreators';
+import { bindActionCreators } from 'redux';
 
-export default class Welcome extends Component {
+class Welcome extends Component {
   static navigationOptions = {
     title: 'Welcome',
     header: null
   };
   render() {
     const { navigate } = this.props.navigation;
+    console.log('welcome props', this.props);
     return (
       <View style={styles.container}>
         <Image source={require('../../images/222.jpg')} style={styles.backgroundImage}/>
@@ -53,3 +57,12 @@ const styles = StyleSheet.create({
   }
 });
 
+const mapStateToProps = state => ({
+  //hotList: state.reddit.hotList
+});
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(actionCreators, dispatch);
+}
+
+export default connect( mapStateToProps, mapDispatchToProps)(Welcome);

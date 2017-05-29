@@ -1,10 +1,11 @@
 import { combineReducers } from 'redux';
-import { reducer as formReducer } from 'redux-form';
 import { navReducer } from '../Navigator';
-import reddit from './reddit';
+
+import login from './login';
+import auth from './auth'
 
 export default combineReducers({
-  reddit,
-  nav: navReducer,
-  form: formReducer
+	login,
+	auth,
+	nav: navReducer
 });

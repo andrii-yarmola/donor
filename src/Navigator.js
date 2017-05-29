@@ -6,6 +6,8 @@ import Welcome from './components/Welcome/Welcome';
 import TermsAndConditions from './components/TermsAndConditions';
 import RegistrationWrap from './components/Registration/RegistrationWrap';
 
+import * as actionCreators from './actions/actionCreators';
+
 //global form styling for t-comb-forms
 import { forms } from './styles';
 
@@ -25,6 +27,9 @@ const Navigator = ({ dispatch, nav }) => (
       dispatch,
       state: nav
     })}
+    screenProps={{
+      actions: actionCreators
+    }}
   />
 );
 
