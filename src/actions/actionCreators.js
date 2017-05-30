@@ -1,4 +1,7 @@
 import axios from 'axios';
+import { AsyncStorage } from 'react-native';
+
+import setAuthToken from '../utils/setAuthToken';
 
 // API  URL
 const baseURL = 'http://192.168.15.68:1337';
@@ -15,7 +18,16 @@ export const setCurrentUser = (user) => ({
 export function login(data) {
   return dispatch => {
     return axios.post(`${baseURL}/user`, data).then(res => {
-      console.log(res);
+      const token = res.data.token;
+      if (token) {
+        
+        AsyncStorage.setItem('jwtToken', token);
+        setAuthToken(token);
+        
+        // dispatch(setCurrentUser(jwt.decode(token)));
+
+        
+      }
     })
   }
 }
