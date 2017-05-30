@@ -42,10 +42,16 @@ export default class SignIn extends Component {
   
   onSubmit(e){
     var value = this.refs.form.getValue();
-    console.log('signin props', this.props);
     if (value) {
+      console.log(this.props);
       // validation
       console.log(value);
+      
+      this.props.login(value).then(
+        (res) => console.log('myRes', res),
+        (err) => console.log('my error', err)
+      );
+      
       this.clearForm();
     }
   }

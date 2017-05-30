@@ -12,18 +12,18 @@ class Welcome extends Component {
   };
   render() {
     const { navigate } = this.props.navigation;
-    console.log('welcome props', this.props);
+    //console.log('welcome props', this.props);
     return (
       <View style={styles.container}>
         <Image source={require('../../images/222.jpg')} style={styles.backgroundImage}/>
-        <Text>Welcome to the Donor app!</Text>
+        <Text>Welcome to the Donor app!!!</Text>
         <TouchableOpacity
           onPress={() => navigate('RegistrationWrap', { registrationStep: 1 })}
           style={styles.button}
         >
           <Text style={styles.buttonText}> Create account </Text>
         </TouchableOpacity>
-        <SignIn/>
+        <SignIn login={this.props.login}/>
       </View>
     );
   }
