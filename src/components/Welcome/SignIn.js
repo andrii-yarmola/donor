@@ -15,7 +15,7 @@ const options = {
   auto: 'placeholders',
   fields: {
     identifier: {
-      placeholder: 'email/phone',
+      placeholder: 'Email / Phone',
       keyboardType: 'email-address',
       error: 'Insert a valid email or phone'
     },
@@ -59,7 +59,6 @@ export default class SignIn extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>Sign in to existing account:</Text>
         { this.state.error && <Text> {this.state.error} </Text> }
         <Form
           ref="form"
@@ -70,12 +69,13 @@ export default class SignIn extends Component {
           onPress={this.onSubmit}
           style={styles.button}
         >
-          <Text style={styles.buttonText}> Sign In </Text>
+          <Text style={styles.buttonText}> Log In </Text>
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => {}}
+          style={styles.link}
         >
-          <Text> Recover lost account </Text>
+          <Text style={styles.linkText}> Recover lost account </Text>
         </TouchableOpacity>
         { this.state.isLoading && 
           <ActivityIndicator
@@ -92,15 +92,28 @@ export default class SignIn extends Component {
 const styles = StyleSheet.create({
   container: {
     paddingVertical: 30,
+
   },
-   button: {
-    borderRadius: 20,
-    backgroundColor: 'green',
-    padding: 10
+  button: {
+    borderRadius: 30,
+    backgroundColor: '#bbe172',
+    paddingVertical: 15,
+    paddingHorizontal: 1,
+    marginBottom: 30,
+    marginTop: 25
   },
   buttonText: {
     color: 'white',
-    textAlign: 'center',
+    fontSize: 24,
+    lineHeight: 27,
+    alignSelf: 'center',
+  },
+  link: {
+    alignSelf: 'center'
+  },
+  linkText: {
+    color: '#bbe172',
+    fontSize: 17
   }
 });
 

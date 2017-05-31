@@ -7,7 +7,6 @@ import { bindActionCreators } from 'redux';
 
 class Welcome extends Component {
   static navigationOptions = {
-    title: 'Welcome',
     header: null
   };
   render() {
@@ -15,8 +14,8 @@ class Welcome extends Component {
     //console.log('welcome props', this.props);
     return (
       <View style={styles.container}>
-        <Image source={require('../../images/222.jpg')} style={styles.backgroundImage}/>
-        <Text>Welcome to the Donor app!!!</Text>
+        <Image source={require('../../images/main-bg.png')} style={styles.backgroundImage}/>
+        <Image source={require('../../images/logo.png')} style={styles.logo}/>
         <TouchableOpacity
           onPress={() => navigate('RegistrationWrap', { registrationStep: 1 })}
           style={styles.button}
@@ -33,10 +32,13 @@ class Welcome extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#e1e1e1',
+    backgroundColor: 'white',
     justifyContent: 'center',
     flexDirection: 'column',
-    alignItems: 'center',
+    alignItems: 'stretch',
+    padding: 45,
+    paddingBottom: 10,
+    paddingTop: 110
   },
   backgroundImage: {
     position: 'absolute',
@@ -44,16 +46,24 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     width: null,
-    height: 220,
-    //resizeMode: 'stretch', 
+    height: 390,
   },
   button: {
-    borderRadius: 20,
+    borderRadius: 30,
     backgroundColor: 'white',
-    padding: 10
+    paddingVertical: 15,
+    paddingHorizontal: 1,
+    marginBottom: 60
   },
   buttonText: {
-    color: 'green',
+    color: '#94be45',
+    fontSize: 24,
+    lineHeight: 27,
+    alignSelf: 'center'
+  },
+  logo: {
+    marginBottom: 65,
+    alignSelf: 'center',
   }
 });
 

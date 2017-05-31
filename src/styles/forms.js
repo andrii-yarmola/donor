@@ -14,8 +14,9 @@ stylesheet.textboxView.normal.borderRadius = 0;
 stylesheet.textboxView.error.borderRadius = 0;
 stylesheet.textboxView.normal.borderBottomWidth = 1;
 stylesheet.textboxView.error.borderBottomWidth = 1;
-stylesheet.textbox.normal.marginBottom = 5;
-stylesheet.textbox.error.marginBottom = 5;
+stylesheet.textboxView.normal.borderBottomColor = '#bcbdbe';
+stylesheet.textbox.normal.marginBottom = 2;
+stylesheet.textbox.error.marginBottom = 2;
 
 
 export default t;
