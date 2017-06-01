@@ -6,31 +6,23 @@ const Form = t.form.Form;
 
 const BloodType = t.enums({
   first: 'First',
-  second: 'Second'
-});
-
-const Rh = t.enums({
-  plus: 'plus',
-  minus: 'minus'
+  second: '2'
 });
 
 // form model
 const structure = t.struct({
   bloodType: BloodType,
-  rh: Rh,
-  isUnknownBloodType: t.Boolean,
-  isDonor: t.Boolean,
-  lastDonate: t.Date
+  isAlreadyDonor: t.Boolean,
 });
 
 // form options
 const options = {
   fields: {
-    isUnknownBloodType: {
-      label: "I don't know my blood type",
+    bloodType: {
+      label: "My blood type",
     },
-    isDonor: {
-      label: "I am donor alredy",
+    isAlreadyDonor: {
+      label: "I donated in last 3 weeks",
     },
   }
 }; 
