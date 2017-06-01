@@ -15,8 +15,11 @@ class Welcome extends Component {
     //console.log('welcome props', this.props);
     return (
       <View style={ styles.container }>
-        <SignUp navigate={ navigate }/>
-        <SignIn login={ this.props.login }/>
+        <SignUp navigate={ this.props.navigation.navigate }/>
+        <SignIn
+          login={ this.props.login }
+          navigate={ this.props.navigation.navigate }
+        />
       </View>
     );
   }

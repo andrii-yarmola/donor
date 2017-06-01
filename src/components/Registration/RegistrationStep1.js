@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
     padding: 50,
     justifyContent: 'center',
     flexDirection: 'column',
-    backgroundColor: '#e1e1e1',
+    backgroundColor: 'brown',
   },
 });
 

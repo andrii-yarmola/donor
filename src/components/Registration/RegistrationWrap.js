@@ -47,7 +47,6 @@ export default class RegistrationWrap extends Component {
   
   static navigationOptions = ({ navigation}) => {
     return {
-      title: `Step ${ navigation.state.params.registrationStep }`,
       headerRight: (
       <Button
         title='inc'
@@ -64,28 +63,27 @@ export default class RegistrationWrap extends Component {
         case 2 : return <RegistrationStep2 saveValues={this.saveValues} navigate={this.props.navigation.navigate}/>
         case 3 : return <RegistrationStep3/>
         default : return <RegistrationStep1/>
-      }
     }
+  }
 
-    return (
-      <View style={styles.container}>
-        {StepView()}
-        <RegistrationProgress
-          currentStep = { this.props.navigation.state.params.registrationStep }
-          amount = {4}
-        />
-      </View>
-    )
+  return (
+    <View style={styles.container}>
+      <StepView/>
+      <RegistrationProgress
+        currentStep = { this.props.navigation.state.params.registrationStep }
+        amount = {4}
+      />
+    </View>
+  )
   }
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 5,
     justifyContent: 'center',
     flexDirection: 'column',
-    backgroundColor: '#e1e1e1',
+    backgroundColor: 'white',
   },
 });
 

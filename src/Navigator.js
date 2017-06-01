@@ -5,10 +5,11 @@ import { StackNavigator, TabNavigator, addNavigationHelpers } from 'react-naviga
 import Welcome from './components/Welcome/Welcome';
 import TermsAndConditions from './components/TermsAndConditions';
 import RegistrationWrap from './components/Registration/RegistrationWrap';
+import Dashboard from './components/Dashboard/Donor/Dashboard'
 
 import * as actionCreators from './actions/actionCreators';
 
-//global form styling for t-comb-forms
+// global form styling for t-comb-forms
 import { forms } from './styles';
 
 // global variable for request debugging
@@ -18,7 +19,8 @@ GLOBAL.XMLHttpRequest = GLOBAL.originalXMLHttpRequest || GLOBAL.XMLHttpRequest;
 const AppNavigator = StackNavigator({
   Welcome: { screen: Welcome },
   TermsAndConditions: { screen: TermsAndConditions },
-  RegistrationWrap: { screen: RegistrationWrap},
+  RegistrationWrap: { screen: RegistrationWrap },
+  Dashboard: { screen: Dashboard },
 });
 
 const Navigator = ({ dispatch, nav }) => (

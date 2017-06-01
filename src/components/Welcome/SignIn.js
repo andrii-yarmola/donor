@@ -48,7 +48,7 @@ export default class SignIn extends Component {
       console.log(value);
       
       this.props.login(value).then(
-        (res) => console.log('myRes', res),
+        (res) => this.props.navigate('Dashboard'),
         (err) => console.log('my error', err)
       );
       
