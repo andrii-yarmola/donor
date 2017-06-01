@@ -91,16 +91,20 @@ export default class SignIn extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    paddingVertical: 30,
-
+    padding: 45,
+    paddingBottom: 30,
+    flex: 1,
+    justifyContent: 'center',
+    flexDirection: 'column',
+    alignItems: 'stretch',
   },
   button: {
     borderRadius: 30,
     backgroundColor: '#bbe172',
     paddingVertical: 15,
     paddingHorizontal: 1,
-    marginBottom: 30,
-    marginTop: 25
+    marginBottom: 25,
+    marginTop: 30
   },
   buttonText: {
     color: 'white',
