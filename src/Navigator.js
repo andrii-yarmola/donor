@@ -21,7 +21,7 @@ const AppNavigator = StackNavigator({
   TermsAndConditions: { screen: TermsAndConditions },
   RegistrationWrap: { screen: RegistrationWrap },
   Dashboard: { screen: Dashboard },
-});
+}, { headerMode: 'screen' });
 
 const Navigator = ({ dispatch, nav }) => (
   <AppNavigator

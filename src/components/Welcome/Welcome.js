@@ -8,7 +8,7 @@ import { bindActionCreators } from 'redux';
 
 class Welcome extends Component {
   static navigationOptions = {
-    header: null
+    header: null,
   };
   render() {
     const { navigate } = this.props.navigation;

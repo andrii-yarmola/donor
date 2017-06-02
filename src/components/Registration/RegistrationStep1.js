@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Button, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 const t = require('tcomb-form-native');
 
 const Form = t.form.Form;
@@ -58,7 +58,7 @@ export default class RegistrationStep1 extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.content}>
-          <Text style={styles.heading}>Specify your blood type</Text>
+          <Text style={styles.heading} allowFontScaling={true}>Specify your blood type</Text>
           <Form
             ref="form"
             type={structure}
@@ -93,10 +93,8 @@ const styles = StyleSheet.create({
     fontFamily: 'Avenir',
     fontWeight: '100',
     textAlign: 'center',
-    paddingHorizontal: 5
-  },
-  form: {
-    padding: 10
+    paddingHorizontal: 5,
+    //allowFontScaling: false
   },
   submit: {
     alignSelf: 'center',

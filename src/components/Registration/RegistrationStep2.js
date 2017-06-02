@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Button, TouchableHighlight } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, TouchableOpacity } from 'react-native';
 const t = require('tcomb-form-native/lib');
 
 const Form = t.form.Form;
@@ -10,39 +10,28 @@ const Gender = t.enums({
 });
 
 // form model
-// const structure = t.struct({
-//   name: t.String,
-//   lastName: t.String,
-//   email: t.String,
-//   phone: t.Number,
-//   age: t.Number,
-//   gender: Gender,
-//   password: t.String,
-//   confirmPassword: t.String,
-// });
-
-// form model
 const structure = t.struct({
-  name: t.maybe(t.String),
-  lastName: t.maybe(t.String),
-  email: t.maybe(t.String),
-  phone: t.maybe(t.Number),
-  age: t.maybe(t.Number),
+  name: t.String,
+  lastName: t.String,
+  email: t.String,
+  phone: t.Number,
+  age: t.Number,
   gender: Gender,
-  password: t.maybe(t.String),
-  confirmPassword: t.maybe(t.String),
+  password: t.String,
+  confirmPassword: t.String,
 });
+
 
 
 // form options
 const options = {
-  auto: 'placeholders',
+  // auto: 'placeholders',
   fields: {
     email: {
       keyboardType: 'email-address',
     },
     gender: {
-      nullOption: {value: '', text: 'Male/Female'}
+      nullOption: {value: '', text: 'Specify'}
     },
   }
 }; 
@@ -76,27 +65,20 @@ export default class RegistrationStep1 extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Form
-          ref="form"
-          type={structure}
-          options={options}
-        />
-        <View> 
-          <Text onPress={ this.onToggle }> checkbox {(this.state.isAgreed).toString()} </Text>
-          <Text> I agree with </Text>
-          <TouchableHighlight
-            underlayColor='transparent'
-            onPress={() => this.props.navigate('TermsAndConditions') }
-            activeOpacity={0.5}
-          >
-            <Text> Terms and conditions </Text>
-          </TouchableHighlight>
-        </View>
-        <Button
+        <ScrollView style={styles.content}>
+          <Text style={styles.heading} allowFontScaling={true}>Personal Details</Text>
+          <Form
+            ref="form"
+            type={structure}
+            options={options}
+          />
+        </ScrollView>
+        <TouchableOpacity
           onPress={this.onSubmit}
-          title="Next"
-          disabled={!this.state.isAgreed}
-        />
+          style={styles.submit}
+        >
+          <Text style={styles.submitText}> Continue </Text>
+        </TouchableOpacity>
       </View>
     )
   }
@@ -105,10 +87,30 @@ export default class RegistrationStep1 extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 50,
-    justifyContent: 'center',
+    justifyContent: 'space-between',
     flexDirection: 'column',
-    backgroundColor: '#e1e1e1',
+    paddingTop: 15
   },
+  content: {
+
+  },
+  heading: {
+    fontSize: 32,
+    lineHeight: 40,
+    fontFamily: 'Avenir',
+    fontWeight: '100',
+    textAlign: 'center',
+    paddingHorizontal: 5,
+    //allowFontScaling: false
+  },
+  submit: {
+    alignSelf: 'center',
+    marginVertical: 25
+  },
+  submitText: {
+    fontSize: 24,
+    color: '#b1e35f',
+    fontFamily: 'Avenir',
+  }
 });
 

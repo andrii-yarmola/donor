@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { NavigationActions } from 'react-navigation';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 import RegistrationStep1 from './RegistrationStep1';
 import RegistrationStep2 from './RegistrationStep2';
@@ -46,11 +47,10 @@ export default class RegistrationWrap extends Component {
     }
   }
   
-  static navigationOptions = ({ navigation}) => {
+  static navigationOptions = ({ navigation }) => {
     return {
-      headerRight: (
-      <Button
-        title='< Back'
+      headerLeft: (
+      <TouchableOpacity
         onPress={
           () => {
             (navigation.state.params.registrationStep === 1) ? 
@@ -59,8 +59,14 @@ export default class RegistrationWrap extends Component {
             navigation.setParams({ registrationStep: navigation.state.params.registrationStep - 1})
           }
         }
-        />
+        style={styles.backButton}
+      >
+        <Icon name="ios-arrow-back" size={25} color="#b1e460" />
+        <Text style={styles.back}> Back </Text>
+      </TouchableOpacity>
       ),
+      headerStyle: { backgroundColor: 'white', shadowColor: 'transparent' },
+      
     }
   };
   
@@ -93,5 +99,18 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     backgroundColor: 'white',
   },
+  back: {
+    color: '#b1e460',
+    fontSize: 17,
+    lineHeight: 25,
+    marginLeft: 5,
+    marginBottom: 3
+  },
+  backButton: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingLeft: 15
+  }
 });
 
