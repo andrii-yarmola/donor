@@ -5,8 +5,15 @@ const t = require('tcomb-form-native');
 const Form = t.form.Form;
 
 const BloodType = t.enums({
-  first: 'First',
-  second: '2'
+  Om: 'O(I) Rh-',
+  Op: 'O(I) Rh+',
+  Am: 'A(II) Rh-',
+  Ap: 'A(II) Rh+',
+  Bm: 'B(III) Rh-',
+  Bp: 'B(III) Rh+',
+  ABp: 'AB(IV) Rh-',
+  ABm: 'AB(IV) Rh+',
+  IDK: "I don't know my blood type"
 });
 
 // form model
@@ -20,6 +27,7 @@ const options = {
   fields: {
     bloodType: {
       label: "My blood type",
+      nullOption: {value: '', text: 'Specify'}
     },
     isAlreadyDonor: {
       label: "I donated in last 3 weeks",
@@ -74,7 +82,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'space-between',
     flexDirection: 'column',
-    //backgroundColor: 'brown',
     paddingTop: 15
   },
   content: {
