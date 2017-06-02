@@ -37,15 +37,17 @@ const styles = StyleSheet.create({
   button: {
     borderRadius: 30,
     backgroundColor: 'white',
-    paddingVertical: 15,
+    paddingVertical: 10,
     paddingHorizontal: 1,
-    marginBottom: 60
+    marginBottom: 60,
   },
   buttonText: {
     color: '#94be45',
     fontSize: 24,
-    lineHeight: 27,
-    alignSelf: 'center'
+    lineHeight: 37,
+    alignSelf: 'center',
+    fontFamily: 'Avenir',
+    fontWeight: '100'
   },
   logo: {
     marginTop: 130,

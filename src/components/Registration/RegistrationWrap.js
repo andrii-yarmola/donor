@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
+import { NavigationActions } from 'react-navigation';
 
 import RegistrationStep1 from './RegistrationStep1';
 import RegistrationStep2 from './RegistrationStep2';
@@ -49,8 +50,15 @@ export default class RegistrationWrap extends Component {
     return {
       headerRight: (
       <Button
-        title='inc'
-        onPress={() => navigation.setParams({ registrationStep: navigation.state.params.registrationStep + 1})}
+        title='< Back'
+        onPress={
+          () => {
+            (navigation.state.params.registrationStep === 1) ? 
+            navigation.dispatch(NavigationActions.back())
+            :
+            navigation.setParams({ registrationStep: navigation.state.params.registrationStep - 1})
+          }
+        }
         />
       ),
     }

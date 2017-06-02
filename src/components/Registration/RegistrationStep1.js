@@ -46,19 +46,18 @@ export default class RegistrationStep1 extends Component {
     }
   }
   
-  static navigationOptions = {
-    title: 'Step 1',
-  };
-  
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.heading}>Specify your blood type</Text>
-        <Form
-          ref="form"
-          type={structure}
-          options={options}
-        />
+        <View style={styles.content}>
+          <Text style={styles.heading}>Specify your blood type</Text>
+          <Form
+            ref="form"
+            type={structure}
+            options={options}
+            style={styles.form}
+          />
+        </View>
         <TouchableOpacity
           onPress={this.onSubmit}
           style={styles.submit}
@@ -73,19 +72,33 @@ export default class RegistrationStep1 extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 10,
-    justifyContent: 'center',
+    justifyContent: 'space-between',
     flexDirection: 'column',
-    backgroundColor: 'brown',
+    //backgroundColor: 'brown',
+    paddingTop: 15
+  },
+  content: {
+
   },
   heading: {
-    fontSize: 32
+    fontSize: 32,
+    lineHeight: 40,
+    fontFamily: 'Avenir',
+    fontWeight: '100',
+    textAlign: 'center',
+    paddingHorizontal: 5
+  },
+  form: {
+    padding: 10
   },
   submit: {
-
+    alignSelf: 'center',
+    marginVertical: 25
   },
   submitText: {
-
+    fontSize: 24,
+    color: '#b1e35f',
+    fontFamily: 'Avenir',
   }
 });
 

@@ -101,7 +101,7 @@ const styles = StyleSheet.create({
   button: {
     borderRadius: 30,
     backgroundColor: '#bbe172',
-    paddingVertical: 15,
+    paddingVertical: 10,
     paddingHorizontal: 1,
     marginBottom: 25,
     marginTop: 30
@@ -109,8 +109,10 @@ const styles = StyleSheet.create({
   buttonText: {
     color: 'white',
     fontSize: 24,
-    lineHeight: 27,
+    lineHeight: 37,
     alignSelf: 'center',
+    fontFamily: 'Avenir',
+    fontWeight: '100'
   },
   link: {
     alignSelf: 'center'

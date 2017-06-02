@@ -12,9 +12,9 @@ const RegistrationProgress = ({ currentStep, amount }) => {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 10,
+    padding: 15,
     alignSelf: 'center',
-    height: 35
+    height: 45
   },
   text: {
     fontSize: 12,
