@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View, Button, TouchableOpacity } from 'react-native';
 const t = require('tcomb-form-native');
 
 const Form = t.form.Form;
@@ -53,16 +53,18 @@ export default class RegistrationStep1 extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>what is your blood type?</Text>
+        <Text style={styles.heading}>Specify your blood type</Text>
         <Form
           ref="form"
           type={structure}
           options={options}
         />
-        <Button
+        <TouchableOpacity
           onPress={this.onSubmit}
-          title="Next"
-        />
+          style={styles.submit}
+        >
+          <Text style={styles.submitText}> Continue </Text>
+        </TouchableOpacity>
       </View>
     )
   }
@@ -71,10 +73,19 @@ export default class RegistrationStep1 extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 50,
+    padding: 10,
     justifyContent: 'center',
     flexDirection: 'column',
     backgroundColor: 'brown',
   },
+  heading: {
+    fontSize: 32
+  },
+  submit: {
+
+  },
+  submitText: {
+
+  }
 });
 
