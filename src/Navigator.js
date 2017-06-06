@@ -29,9 +29,6 @@ const Navigator = ({ dispatch, nav }) => (
       dispatch,
       state: nav
     })}
-    screenProps={{
-      actions: actionCreators
-    }}
   />
 );
 
@@ -45,6 +42,4 @@ export const navReducer = (state, action) => {
   return newState || state;
 };
 
-export default connect(
-  state => ({ nav: state.nav })
-)(Navigator);
+export default connect( state => ({ nav: state.nav }))(Navigator);

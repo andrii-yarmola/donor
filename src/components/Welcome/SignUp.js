@@ -12,6 +12,12 @@ const SignUp = ({ navigate }) => {
       >
         <Text style={styles.buttonText}> Create account </Text>
       </TouchableOpacity>
+      <TouchableOpacity
+      onPress={() => navigate('TermsAndConditions')}
+      style={styles.link}
+      >
+        <Text style={styles.linkText}>  By signing up, you agree to our Terms & Privacy Policy </Text>
+      </TouchableOpacity>
     </View>
   )
 }
@@ -39,7 +45,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     paddingVertical: 10,
     paddingHorizontal: 1,
-    marginBottom: 60,
+    marginBottom: 15,
   },
   buttonText: {
     color: '#94be45',
@@ -53,6 +59,16 @@ const styles = StyleSheet.create({
     marginTop: 130,
     marginBottom: 65,
     alignSelf: 'center',
+  },
+  link: {
+    marginHorizontal: -15,
+    marginBottom: 30
+  },
+  linkText: {
+    fontSize: 12,
+    textAlign: 'center',
+    color: '#b1e35f',
+    backgroundColor: 'transparent',
   }
 });
 

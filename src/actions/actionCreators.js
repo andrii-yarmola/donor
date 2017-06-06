@@ -17,7 +17,7 @@ export const setCurrentUser = (idintifier) => ({
 
 export function login(data) {
   return dispatch => {
-    return axios.post(`${baseURL}/user`, data).then(res => {
+    return axios.post(`${baseURL}/auth`, data).then(res => {
       const token = res.data.token;
       const idintifier = res.data.idintifier;
       if (token) {       
@@ -28,5 +28,11 @@ export function login(data) {
         dispatch(setCurrentUser(idintifier));
       }
     })
+  }
+}
+
+export function userSignupRequest(data) {
+  return dispatch => {
+    return axios.post(`${baseURL}/user`, data);  
   }
 }

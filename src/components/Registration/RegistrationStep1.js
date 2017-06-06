@@ -31,6 +31,7 @@ const options = {
     },
     isAlreadyDonor: {
       label: "I donated in last 3 weeks",
+      onTintColor: '#b1e35f'
     },
   }
 }; 
@@ -50,7 +51,6 @@ export default class RegistrationStep1 extends Component {
     if (value) {
       // validation
       this.props.saveValues(value);
-      // this.props.onNext();
     }
   }
   
@@ -63,7 +63,8 @@ export default class RegistrationStep1 extends Component {
             ref="form"
             type={structure}
             options={options}
-            style={styles.form}
+            value={this.props.value}
+            onChange={this.props.onChange}
           />
         </View>
         <TouchableOpacity
@@ -94,11 +95,14 @@ const styles = StyleSheet.create({
     fontWeight: '100',
     textAlign: 'center',
     paddingHorizontal: 5,
-    //allowFontScaling: false
+    marginBottom: 25,
   },
   submit: {
     alignSelf: 'center',
     marginVertical: 25
+  },
+  toggle: {
+
   },
   submitText: {
     fontSize: 24,

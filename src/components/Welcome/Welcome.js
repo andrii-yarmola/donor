@@ -12,7 +12,6 @@ class Welcome extends Component {
   };
   render() {
     const { navigate } = this.props.navigation;
-    //console.log('welcome props', this.props);
     return (
       <View style={ styles.container }>
         <SignUp navigate={ this.props.navigation.navigate }/>

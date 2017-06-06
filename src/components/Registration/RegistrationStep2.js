@@ -18,7 +18,7 @@ const structure = t.struct({
   age: t.Number,
   gender: Gender,
   password: t.String,
-  confirmPassword: t.String,
+  passwordAgain: t.String,
 });
 
 
@@ -33,6 +33,12 @@ const options = {
     gender: {
       nullOption: {value: '', text: 'Specify'}
     },
+    password: {
+      secureTextEntry: true,
+    },
+    passwordAgain: {
+      secureTextEntry: true,
+    }
   }
 }; 
 
@@ -41,12 +47,9 @@ export default class RegistrationStep1 extends Component {
     super(props);
     this.state = {
       error: false,
-      isAgreed: false,
       isLoading: false
     };
-    
     this.onSubmit = this.onSubmit.bind(this);
-    this.onToggle = this.onToggle.bind(this);
   }
   
   onSubmit(e){
@@ -54,14 +57,9 @@ export default class RegistrationStep1 extends Component {
     if (value) {
       // validation
       this.props.saveValues(value);
-      // this.props.onNext();
     }
   }
-  
-  onToggle(e) {
-    this.setState({ isAgreed: !this.state.isAgreed })
-  }
-  
+
   render() {
     return (
       <View style={styles.container}>
@@ -71,6 +69,8 @@ export default class RegistrationStep1 extends Component {
             ref="form"
             type={structure}
             options={options}
+            value={this.props.value}
+            onChange={this.props.onChange}
           />
         </ScrollView>
         <TouchableOpacity
@@ -101,7 +101,7 @@ const styles = StyleSheet.create({
     fontWeight: '100',
     textAlign: 'center',
     paddingHorizontal: 5,
-    //allowFontScaling: false
+    marginBottom: 25,
   },
   submit: {
     alignSelf: 'center',

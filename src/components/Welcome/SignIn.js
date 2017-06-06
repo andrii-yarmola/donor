@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, Button, ActivityIndicator, TouchableOpacity } from 'react-native';
-const t = require('tcomb-form-native');
+import t from 'tcomb-form-native';
+import _ from 'lodash';
+import { forms } from './../../styles';
+
 
 const Form = t.form.Form;
 
@@ -9,6 +12,8 @@ const structure = t.struct({
   identifier: t.String,
   password: t.String,
 });
+
+const stylesheet = _.cloneDeep(t.form.Form.stylesheet);
 
 // form options
 const options = {
@@ -22,7 +27,8 @@ const options = {
     password: {
       secureTextEntry: true,
     }
-  }
+  },
+  stylesheet: stylesheet
 }; 
 
 export default class SignIn extends Component {
@@ -43,9 +49,7 @@ export default class SignIn extends Component {
   onSubmit(e){
     var value = this.refs.form.getValue();
     if (value) {
-      console.log(this.props);
       // validation
-      console.log(value);
       
       this.props.login(value).then(
         (res) => this.props.navigate('Dashboard'),
@@ -123,3 +127,11 @@ const styles = StyleSheet.create({
   }
 });
 
+stylesheet.textbox.normal.textAlign = 'left';
+stylesheet.textbox.error.textAlign = 'left';
+stylesheet.textbox.normal.paddingHorizontal = 0;
+stylesheet.textbox.error.paddingHorizontal = 0;
+stylesheet.textboxView.normal.padding = 0;
+stylesheet.textboxView.error.padding = 0;
+stylesheet.formGroup.normal.marginLeft = 0;
+stylesheet.formGroup.error.marginLeft = 0;

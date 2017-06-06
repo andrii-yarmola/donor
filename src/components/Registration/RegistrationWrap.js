@@ -13,35 +13,57 @@ export default class RegistrationWrap extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      bloodType: '',
-      rh: '',
-      isUnknownBloodType: false,
-      isDonor: false,
-      lastDonate: '',
-      
-      
-      error: false,
+      formData: {
+        bloodType: '',
+        isAlreadyDonor: false,
+        lastDonate: '',
+
+        name: '',
+        lastName: '',
+        email: '',
+        phone: '',
+        age: '',
+        gender: '',
+        password: '',
+        passwordAgain: '',
+      },
+
+      errors: false,
       isLoading: false,
     };
     
     this.onNext = this.onNext.bind(this);
     this.saveValues = this.saveValues.bind(this);
+    this.onChange = this.onChange.bind(this);
   }
   
   saveValues(obj){
-    this.setState(obj, this.onNext())
+    this.setState(obj, this.onNext());
   }
+
+  onChange(val){
+    // it is dont need to be updatable during setState, and it returs to 'true' after settingState
+    this.shouldComponentUpdate = () => false;
+    const makeUpdatable = () => {
+      this.shouldComponentUpdate = () => true
+    };
+
+    this.setState(val, makeUpdatable);
+  }
+
+  shouldComponentUpdate() { return true };
   
   onNext(e){
-    if (this.props.navigation.state.params.registrationStep === 2) {
+    //if (this.props.navigation.state.params.registrationStep === 2) {
+      if (false) {
       // send request
-      // api.getBio('andrii-yarmola')
-      // .then((res) => {
-      //   console.log(res);
-      // })
-      // .then(
-      //   this.props.navigation.setParams({ registrationStep: ++this.props.navigation.state.params.registrationStep})
-      // )
+      this.props.userSignupRequest(this.state.formData).then(
+        () => {    
+          this.props.navigation.setParams({ registrationStep: ++this.props.navigation.state.params.registrationStep});
+          // TODO: and send code request
+        },
+        (err) => this.setState({ errors: err.response.data, isLoading: false })
+      )
     } else {
       this.props.navigation.setParams({ registrationStep: ++this.props.navigation.state.params.registrationStep});
     }
@@ -66,17 +88,17 @@ export default class RegistrationWrap extends Component {
       </TouchableOpacity>
       ),
       headerStyle: { backgroundColor: 'white', shadowColor: 'transparent' },
-      
+
     }
   };
-  
+
   render() {
     const StepView = () => {
       switch (this.props.navigation.state.params.registrationStep) {
-        case 1 : return <RegistrationStep1 saveValues={this.saveValues}/>
-        case 2 : return <RegistrationStep2 saveValues={this.saveValues} navigate={this.props.navigation.navigate}/>
-        case 3 : return <RegistrationStep3/>
-        default : return <RegistrationStep1/>
+        case 1 : return <RegistrationStep1 saveValues={this.saveValues} value={this.state.formData} onChange={this.onChange}/>
+        case 2 : return <RegistrationStep2 saveValues={this.saveValues} value={this.state.formData} onChange={this.onChange}/>
+        case 3 : return <RegistrationStep3 saveValues={this.saveValues} value={this.state.formData} onChange={this.onChange}/>
+        default : return <RegistrationStep1 saveValues={this.saveValues} value={this.state.formData} onChange={this.onChange}/>
     }
   }
 
