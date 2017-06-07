@@ -39,10 +39,10 @@ export default class RegistrationStep4 extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      pushNotifications: (AsyncStorage.getItem('pushNotifications') == 'true'),
-      emailNotifications: (AsyncStorage.getItem('emailNotifications') == 'true'),
-      smsNotifications: (AsyncStorage.getItem('smsNotifications') == 'true'),
-      viberNotifications: (AsyncStorage.getItem('viberNotifications') == 'true')
+      pushNotifications: false,
+      emailNotifications: false,
+      smsNotifications: false,
+      viberNotifications: false
     };
     
     this.onChange = this.onChange.bind(this);
@@ -56,25 +56,24 @@ export default class RegistrationStep4 extends Component {
     }
   }
 
+  componentDidMount() {
+    // getting options from async storage
+    AsyncStorage.getAllKeys((err, keys) => {
+      AsyncStorage.multiGet(keys, (err, stores) => {
+       stores.map((result, i, store) => {
+         let key = store[i][0];
+         let value = store[i][1];
+         this.setState({[key]: (value=='true')});
+        });
+      });
+    });
+  }
+
   onChange() {
-    AsyncStorage.setItem('smsNotifications', 'true');
     var value = this.refs.form.getValue();
     if (value) {
       this.setState(value);
-    };
-    
-    const dumpRaw = () => {
-  return AsyncStorage.getAllKeys().then(keys => {
-    return Promise.reduce(keys, (result, key) => {
-      return AsyncStorage.getItem(key).then(value => {
-        result[key] = value;
-        return result;
-      });
-    }, {});
-  });
-};
-
-dumpRaw().then(data => console.log(data));
+    };  
   }
   
   render() {
