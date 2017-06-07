@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { NavigationActions } from 'react-navigation';
 import Icon from 'react-native-vector-icons/Ionicons';
+import { connect } from 'react-redux';
+import * as actionCreators from './../../actions/actionCreators';
+import { bindActionCreators } from 'redux';
 
 import RegistrationStep1 from './RegistrationStep1';
 import RegistrationStep2 from './RegistrationStep2';
@@ -9,7 +12,7 @@ import RegistrationStep3 from './RegistrationStep3';
 import RegistrationProgress from './RegistrationProgress';
 
 
-export default class RegistrationWrap extends Component {
+class RegistrationWrap extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -28,17 +31,16 @@ export default class RegistrationWrap extends Component {
         passwordAgain: '',
       },
 
+      verifyCode: '',
+
       errors: false,
       isLoading: false,
     };
     
-    this.onNext = this.onNext.bind(this);
-    this.saveValues = this.saveValues.bind(this);
+    this.onNextStep = this.onNextStep.bind(this);
     this.onChange = this.onChange.bind(this);
-  }
-  
-  saveValues(obj){
-    this.setState(obj, this.onNext());
+    this.onSubmitDetails = this.onSubmitDetails.bind(this);
+    this.onVerifyCheck = this.onVerifyCheck.bind(this);
   }
 
   onChange(val){
@@ -52,21 +54,29 @@ export default class RegistrationWrap extends Component {
   }
 
   shouldComponentUpdate() { return true };
-  
-  onNext(e){
-    //if (this.props.navigation.state.params.registrationStep === 2) {
-      if (false) {
-      // send request
-      this.props.userSignupRequest(this.state.formData).then(
-        () => {    
-          this.props.navigation.setParams({ registrationStep: ++this.props.navigation.state.params.registrationStep});
-          // TODO: and send code request
-        },
-        (err) => this.setState({ errors: err.response.data, isLoading: false })
-      )
-    } else {
-      this.props.navigation.setParams({ registrationStep: ++this.props.navigation.state.params.registrationStep});
-    }
+
+  onVerifyCheck(obj) {
+    this.setState(obj);
+    // send code to server
+    this.props.navigation.setParams({ registrationStep: ++this.props.navigation.state.params.registrationStep});
+  }
+
+  onNextStep(obj) {
+    this.setState({formData: obj});
+    this.props.navigation.setParams({ registrationStep: ++this.props.navigation.state.params.registrationStep});
+  }
+
+  onSubmitDetails(obj) {
+    this.setState({formData: obj});
+    /*
+    this.props.userSignupRequest(this.state.formData).then(
+      () => { this.props.navigation.setParams({ registrationStep: ++this.props.navigation.state.params.registrationStep});
+        // TODO: and send code request
+      },
+      (err) => this.setState({ errors: err.response.data, isLoading: false })
+    )
+    */
+    this.props.navigation.setParams({ registrationStep: ++this.props.navigation.state.params.registrationStep});
   }
   
   static navigationOptions = ({ navigation }) => {
@@ -95,13 +105,12 @@ export default class RegistrationWrap extends Component {
   render() {
     const StepView = () => {
       switch (this.props.navigation.state.params.registrationStep) {
-        case 1 : return <RegistrationStep1 saveValues={this.saveValues} value={this.state.formData} onChange={this.onChange}/>
-        case 2 : return <RegistrationStep2 saveValues={this.saveValues} value={this.state.formData} onChange={this.onChange}/>
-        case 3 : return <RegistrationStep3 saveValues={this.saveValues} value={this.state.formData} onChange={this.onChange}/>
-        default : return <RegistrationStep1 saveValues={this.saveValues} value={this.state.formData} onChange={this.onChange}/>
+        case 1 : return <RegistrationStep1 saveValues={this.onNextStep} value={this.state.formData} onChange={this.onChange}/>
+        case 2 : return <RegistrationStep2 saveValues={this.onSubmitDetails} value={this.state.formData} onChange={this.onChange}/>
+        case 3 : return <RegistrationStep3 saveValues={this.onVerifyCheck} value={this.state.verifyCode} onChange={this.onChange}/>
+        default : return <RegistrationStep1 saveValues={this.onNextStep} value={this.state.formData} onChange={this.onChange}/>
     }
   }
-
   return (
     <View style={styles.container}>
       <StepView/>
@@ -136,3 +145,12 @@ const styles = StyleSheet.create({
   }
 });
 
+const mapStateToProps = state => ({
+  //hotList: state.reddit.hotList
+});
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(actionCreators, dispatch);
+}
+
+export default connect( mapStateToProps, mapDispatchToProps)(RegistrationWrap);

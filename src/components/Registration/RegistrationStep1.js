@@ -58,7 +58,7 @@ export default class RegistrationStep1 extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.content}>
-          <Text style={styles.heading} allowFontScaling={true}>Specify your blood type</Text>
+          <Text style={styles.heading}>Specify your blood type</Text>
           <Form
             ref="form"
             type={structure}

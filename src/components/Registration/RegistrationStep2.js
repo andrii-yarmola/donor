@@ -64,7 +64,7 @@ export default class RegistrationStep1 extends Component {
     return (
       <View style={styles.container}>
         <ScrollView style={styles.content}>
-          <Text style={styles.heading} allowFontScaling={true}>Personal Details</Text>
+          <Text style={styles.heading}>Personal Details</Text>
           <Form
             ref="form"
             type={structure}
