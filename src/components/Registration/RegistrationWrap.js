@@ -9,6 +9,7 @@ import { bindActionCreators } from 'redux';
 import RegistrationStep1 from './RegistrationStep1';
 import RegistrationStep2 from './RegistrationStep2';
 import RegistrationStep3 from './RegistrationStep3';
+import RegistrationStep4 from './RegistrationStep4';
 import RegistrationProgress from './RegistrationProgress';
 
 
@@ -108,6 +109,7 @@ class RegistrationWrap extends Component {
         case 1 : return <RegistrationStep1 saveValues={this.onNextStep} value={this.state.formData} onChange={this.onChange}/>
         case 2 : return <RegistrationStep2 saveValues={this.onSubmitDetails} value={this.state.formData} onChange={this.onChange}/>
         case 3 : return <RegistrationStep3 saveValues={this.onVerifyCheck} value={this.state.verifyCode} onChange={this.onChange}/>
+        case 4 : return <RegistrationStep4 saveValues={this.onNextStep}/>
         default : return <RegistrationStep1 saveValues={this.onNextStep} value={this.state.formData} onChange={this.onChange}/>
     }
   }
