@@ -5,7 +5,8 @@ import { StackNavigator, TabNavigator, addNavigationHelpers } from 'react-naviga
 import Welcome from './components/Welcome/Welcome';
 import TermsAndConditions from './components/TermsAndConditions';
 import RegistrationWrap from './components/Registration/RegistrationWrap';
-import Dashboard from './components/Dashboard/Donor/Dashboard'
+import Dashboard from './components/Dashboard/Donor/Dashboard';
+import RegistrationDone from './components/Registration/RegistrationDone';
 
 import * as actionCreators from './actions/actionCreators';
 
@@ -16,12 +17,19 @@ import { forms } from './styles';
 GLOBAL.XMLHttpRequest = GLOBAL.originalXMLHttpRequest || GLOBAL.XMLHttpRequest;
 
 
-const AppNavigator = StackNavigator({
-  Welcome: { screen: Welcome },
-  TermsAndConditions: { screen: TermsAndConditions },
-  RegistrationWrap: { screen: RegistrationWrap },
-  Dashboard: { screen: Dashboard },
-}, { headerMode: 'screen' });
+const AppNavigator = StackNavigator(
+  {
+    Welcome: { screen: Welcome },
+    TermsAndConditions: { screen: TermsAndConditions },
+    RegistrationWrap: { screen: RegistrationWrap },
+    Dashboard: { screen: Dashboard },
+    RegistrationDone: { screen: RegistrationDone}
+  }, 
+  { 
+    headerMode: 'screen',
+    initialRouteName: 'RegistrationDone'
+  }
+);
 
 const Navigator = ({ dispatch, nav }) => (
   <AppNavigator

@@ -109,7 +109,7 @@ class RegistrationWrap extends Component {
         case 1 : return <RegistrationStep1 saveValues={this.onNextStep} value={this.state.formData} onChange={this.onChange}/>
         case 2 : return <RegistrationStep2 saveValues={this.onSubmitDetails} value={this.state.formData} onChange={this.onChange}/>
         case 3 : return <RegistrationStep3 saveValues={this.onVerifyCheck} value={this.state.verifyCode} onChange={this.onChange}/>
-        case 4 : return <RegistrationStep4 saveValues={this.onNextStep}/>
+        case 4 : return <RegistrationStep4 navigate={ this.props.navigation.navigate }/>
         default : return <RegistrationStep1 saveValues={this.onNextStep} value={this.state.formData} onChange={this.onChange}/>
     }
   }

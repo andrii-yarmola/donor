@@ -46,24 +46,18 @@ export default class RegistrationStep4 extends Component {
     };
     
     this.onChange = this.onChange.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
-  }
-
-  onSubmit() {
-    var value = this.refs.form.getValue();
-    if (value) {
-      this.props.saveValues(value);
-    }
   }
 
   componentDidMount() {
     // getting options from async storage
     AsyncStorage.getAllKeys((err, keys) => {
       AsyncStorage.multiGet(keys, (err, stores) => {
-       stores.map((result, i, store) => {
-         let key = store[i][0];
-         let value = store[i][1];
-         this.setState({[key]: (value=='true')});
+        stores.map((result, i, store) => {
+          let key = store[i][0];
+          let value = store[i][1];
+          if (key in this.state) {
+            this.setState({[key]: (value=='true')});
+          }
         });
       });
     });
@@ -77,8 +71,9 @@ export default class RegistrationStep4 extends Component {
   }
   
   render() {
+    const navigate = this.props.navigate;
     return (
-       <View style={styles.container}>
+      <View style={styles.container}>
         <ScrollView style={styles.content}>
           <Text style={styles.heading}>Notifications</Text>
           <Text style={styles.caption}>Please choose the most convenient ways to receive notifications from our app.</Text>
@@ -91,7 +86,7 @@ export default class RegistrationStep4 extends Component {
           />
         </ScrollView>
         <TouchableOpacity
-          onPress={this.onSubmit}
+          onPress={() => navigate('RegistrationDone')}
           style={styles.submit}
         >
           <Text style={styles.submitText}> Finish </Text>
