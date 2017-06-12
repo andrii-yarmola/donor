@@ -2,36 +2,37 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 
 
-const TabSet = ({ tabObj }) => {
-    return (
-      <View style={styles.container}>
-        <View style={styles.wrapper}>
-          { tabObj.tabArr.map((item, i) => 
-              (
-                <TouchableOpacity 
-                  key={item} 
-                  style={[
-                    styles.button,
-                    (item === tabObj.tabActive) && styles.buttonActive,
-                    (i === 1) && styles.buttonRight,
-                    ]} > 
-                  <Text 
-                    style={[styles.buttonText, (item === tabObj.tabActive) && styles.buttonTextActive]} > 
-                    { item }
+const TabSet = ({ tabObj, onTabChange }) => {
+  return (
+    <View style={styles.container}>
+      <View style={styles.wrapper}>
+        { tabObj.tabArr.map((item, i) => 
+            (
+              <TouchableOpacity
+                onPress={() => onTabChange(item)}
+                key={item} 
+                style={[
+                  styles.button,
+                  (item === tabObj.tabActive) && styles.buttonActive,
+                  (i === 1) && styles.buttonRight,
+                  ]} > 
+                <Text 
+                  style={[styles.buttonText, (item === tabObj.tabActive) && styles.buttonTextActive]} > 
+                  { item }
+                </Text>
+                { (tabObj.counts[i] > 0) && 
+                  <Text
+                    style={[styles.countLeft, (i === 1) && styles.countRight]} > 
+                    { tabObj.counts[i] }
                   </Text>
-                  { (tabObj.counts[i] > 0) && 
-                    <Text
-                      style={[styles.countLeft, (i === 1) && styles.countRight]} > 
-                      { tabObj.counts[i] }
-                    </Text>
-                  }
-                </TouchableOpacity>
-              )  
-            )
-          }
-        </View>
+                }
+              </TouchableOpacity>
+            )  
+          )
+        }
       </View>
-    );
+    </View>
+  );
 };
 
 const styles = StyleSheet.create({

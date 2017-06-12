@@ -6,6 +6,7 @@ import * as actionCreators from './../../../actions/actionCreators';
 import { bindActionCreators } from 'redux';
 
 import TabSet from './TabSet';
+import IncomingList from './IncomingList';
 
 class Dashboard extends Component {
   constructor(props) {
@@ -15,9 +16,32 @@ class Dashboard extends Component {
         tabActive: 'Incoming',
         tabArr: ['Incoming', 'Accepted'],
         counts: [ 3, 2 ]
-      }
-    };
+      },
+      incomingData: [
+        {
+          bloodType: 'Whole Blood',
+          postedTime: 'Just now',
+          donationDate: '23 December 2018',
+          donationTime: '18:30',
+          location: "Children's Hospital 16, 2 Lui pastera St.",
+        },
+        {
+          bloodType: 'Whole Blood 2',
+          postedTime: 'Just now',
+          donationDate: '23 December 2018',
+          donationTime: '18:30',
+          location: "Children's Hospital 16, 2 Lui pastera St.",
+        }
+      ],
+      AcceptedData: [
 
+      ],
+    };
+    this.onTabChange = this.onTabChange.bind(this);
+  }
+
+  onTabChange(tabName) {
+    this.setState({ tabObj : { ...this.state.tabObj, tabActive: tabName } });
   }
 
   static navigationOptions = ({ navigation }) => {
@@ -43,9 +67,12 @@ class Dashboard extends Component {
   render() {
     return (
       <View style={ styles.container }>
-        <Text> THIS IS DASHBOARD 1</Text>
+        <IncomingList
+          incomingData = {this.state.incomingData}
+        />
         <TabSet 
           tabObj = { this.state.tabObj }
+          onTabChange = { this.onTabChange }
         />
       </View>
     );
