@@ -23,11 +23,11 @@ const AppNavigator = StackNavigator(
     TermsAndConditions: { screen: TermsAndConditions },
     RegistrationWrap: { screen: RegistrationWrap },
     Dashboard: { screen: Dashboard },
-    RegistrationDone: { screen: RegistrationDone}
+    RegistrationDone: { screen: RegistrationDone }
   }, 
   { 
     headerMode: 'screen',
-    initialRouteName: 'RegistrationDone'
+    initialRouteName: 'Dashboard'
   }
 );
 
